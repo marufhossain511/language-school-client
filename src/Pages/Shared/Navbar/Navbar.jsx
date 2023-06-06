@@ -1,17 +1,17 @@
 import { NavLink } from 'react-router-dom';
-import logo from '../../../assets/Home/Logo/logo.png'
+import logo from '../../../assets/Home/Logo/logo2.jpg'
 const Navbar = () => {
 
     const navItems=<>
-    <li><NavLink to='/' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >Home</NavLink></li>
-    <li><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Instructors</NavLink></li>
-    <li><NavLink to='/classes' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Classes</NavLink></li>
-    <li><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
+    <li className='text-lg'><NavLink to='/' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >Home</NavLink></li>
+    <li className='text-lg'><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Instructors</NavLink></li>
+    <li className='text-lg'><NavLink to='/classes' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Classes</NavLink></li>
+    <li className='text-lg'><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
     </>
 
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className='my-4'>
+            <div className="navbar fixed z-10 bg-base-100">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
