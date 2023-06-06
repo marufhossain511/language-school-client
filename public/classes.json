@@ -1,0 +1,95 @@
+ [
+      
+      {
+        "classId": "course001",
+        "className": "Spanish Language",
+        "instructorName": "Maria Rodriguez",
+        "price": 99.99,
+        "availableSeat": 10,
+        "image": "https://img.freepik.com/free-vector/students-talk-learning-spanish-language-banner_570502-57.jpg?w=740&t=st=1686081183~exp=1686081783~hmac=bb71aae9a64c7c5a1778bfa50491f3cdba8c4e370131444a5a933ffea7626fbd",
+        "students": 0
+      },
+      {
+        "classId": "course002",
+        "className": "French Language",
+        "instructorName": "Jeanne Dupont",
+        "price": 89.99,
+        "availableSeat": 15,
+        "image": "https://img.freepik.com/free-vector/learning-french-concept-illustration_114360-16502.jpg?w=740&t=st=1686081293~exp=1686081893~hmac=f3a098f21a4daae9869f1a9efb6f397a41f010d5b2c89e5642020760852dffaf",
+        "students": 0
+      },
+      {
+        "classId": "course003",
+        "className": "German Language",
+        "instructorName": "Hans Müller",
+        "price": 109.99,
+        "availableSeat": 8,
+        "image": "https://img.freepik.com/premium-vector/germans-talk-have-conversation-learning-german-language-lesson-with-tutor-teacher-communication-vector-banner-background-study-tradition-culture-education-theme_570502-54.jpg?size=626&ext=jpg&uid=R105744961&ga=GA1.2.452690373.1680190369&semt=ais",
+        "students": 0
+      },
+      {
+        "classId": "course004",
+        "className": "Japanese Language",
+        "instructorName": "Yumi Nakamura",
+        "price": 79.99,
+        "availableSeat": 12,
+        "image": "https://img.freepik.com/free-vector/learning-chinese-concept-illustration_114360-15689.jpg?w=740&t=st=1686081741~exp=1686082341~hmac=fbc31acd283525c0bfc04bb307209e78c0528e2ca43638dc286edd694a3ec459",
+        "students": 0
+      },
+      {
+        "classId": "course005",
+        "className": "Italian Language",
+        "instructorName": "Giuseppe Rossi",
+        "price": 94.99,
+        "availableSeat": 7,
+        "image": "https://img.freepik.com/premium-vector/learn-french-language-study-foreign-languages-website-laptop-concept-online-education_530733-3131.jpg?w=740",
+        "students": 0
+      },
+      {
+        "classId": "course006",
+        "className": "Mandarin Chinese Language",
+        "instructorName": "Li Wei",
+        "price": 109.99,
+        "availableSeat": 10,
+        "image": "https://img.freepik.com/free-vector/learning-chinese-concept-illustration_114360-16499.jpg?size=626&ext=jpg&uid=R105744961&ga=GA1.2.452690373.1680190369&semt=ais",
+        "students": 0
+      },
+      {
+        "classId": "course007",
+        "className": "English Language",
+        "instructorName": "Milon USF",
+        "price": 99.99,
+        "availableSeat": 10,
+        "image": "https://img.freepik.com/free-vector/hand-drawn-english-book-illustration_23-2149517759.jpg?size=626&ext=jpg&uid=R105744961&ga=GA1.2.452690373.1680190369&semt=ais",
+        "students": 0
+      }, 
+      {
+        "classId": "course008",
+        "className": "Arabic Language",
+        "instructorName": "Ahmed Khalid",
+        "price": 94.99,
+        "availableSeat": 8,
+        "image": "https://img.freepik.com/free-vector/arabic-lesson-with-tutor-teacher-vector_570502-53.jpg?size=626&ext=jpg&uid=R105744961&ga=GA1.2.452690373.1680190369&semt=ais",
+        "students": 0
+      },
+      {
+        "classId": "course009",
+        "className": "Portuguese Language",
+        "instructorName": "Ana Silva",
+        "price": 89.99,
+        "availableSeat": 10,
+        "image": "https://img.freepik.com/free-vector/hand-drawn-portuguese-language-illustration_23-2149824010.jpg?size=626&ext=jpg&uid=R105744961&ga=GA1.2.452690373.1680190369&semt=ais",
+        "students": 0
+      },
+      {
+        "classId": "course012",
+        "className": "Hindi Language",
+        "instructorName": "Amit Patel",
+        "price": 94.99,
+        "availableSeat": 15,
+        "image": "https://img.freepik.com/free-vector/happy-hindi-divas-celebration-beautiful-elegant-background-design_1055-15234.jpg?w=740&t=st=1686082870~exp=1686083470~hmac=0e03dfe0a72aaa5da39304d96ab78c70c906bb13ffea9f04841691356a0343da",
+        "students": 0
+      }
+]
+
+  

@@ -26,7 +26,7 @@ const Navbar = () => {
         <img className='h-16'  src={logo} alt="logo" />
         </div>
         <div>
-        <a className=""><span className="text-3xl font-bold font-mono"> Language</span> <span className="text-2xl font-mono">School</span></a>
+        <a className=""><span className="text-3xl font-bold font-mono text-blue-900"> Language</span> <span className="text-2xl font-mono text-blue-700">School</span></a>
         </div>
      </div>
   </div>
