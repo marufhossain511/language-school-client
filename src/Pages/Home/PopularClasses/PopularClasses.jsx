@@ -8,7 +8,7 @@ const PopularClasses = () => {
         queryKey: ['classes'],
          queryFn: async ()=>{
                const res=await axios.get('http://localhost:5000/classes')
-               console.log(res.data); 
+            //    console.log(res.data); 
                return res.data
          }
         })
