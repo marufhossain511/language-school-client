@@ -4,14 +4,13 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 const PopularInstructor = () => {
 
     const {data:instructors=[]}=useQuery({
         queryKey:[''],
         queryFn: async ()=>{
-            const res= await axios('instructor.json')
+            const res= await axios('http://localhost:5000/instructors')
             console.log(res.data);
             return res.data
         }
@@ -38,13 +37,9 @@ const PopularInstructor = () => {
                 <img src={instructor.image} alt="Shoes" className="rounded-xl" />
             </figure>
             <div className="card-body items-start text-center">
-                <p className="font-bold text-lg">Name: {instructor.name}</p>
-                <h2 className="card-title">{instructor.className}</h2>
-                <p className="font-medium">Experience: {instructor.experienceYear} Year</p>
-                <div className="flex items-center gap-2">
-                <p>Rating: </p>
-                <Rating style={{ maxWidth: 100 }} value={instructor.rating} readOnly/>
-                </div>
+                <h2 className=" font-bold text-2xl">Name: {instructor.name}</h2>
+                <p className="font-bold text-lg">Email: {instructor.email}</p>
+    
             </div>
             </div>
 

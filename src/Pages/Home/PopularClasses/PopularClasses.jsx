@@ -1,17 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import PopularCard from "./PopularCard";
+import useClasses from "../../../hooks/useClasses";
 
 const PopularClasses = () => {
 
-    const {data:classes=[]} = useQuery({ 
-        queryKey: ['classes'],
-         queryFn: async ()=>{
-               const res=await axios.get('http://localhost:5000/classes')
-            //    console.log(res.data); 
-               return res.data
-         }
-        })
+    const [classes]=useClasses()
 
     return (
         <div className="my-20 ">
