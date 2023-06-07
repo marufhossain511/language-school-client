@@ -2,7 +2,7 @@ import logo from '../../../assets/Home/Logo/logo2.jpg'
 const Footer = () => {
     return (
         <div>
-        <footer className="footer p-10 bg-neutral text-neutral-content">
+        <footer className="footer font-mono p-10 bg-neutral text-neutral-content">
         <div className='flex items-center'>
             <img className='rounded-2xl' src={logo} alt="" />
             <p>Language School.<br/>Tech Language since 1992</p>
@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
         </div>
         </footer>
-        <footer className="footer footer-center p-4 bg-neutral text-white">
+        <footer className="footer font-mono footer-center p-4 bg-neutral text-white">
         <div>
             <p>Copyright © 2023 - All right reserved by Language School</p>
         </div>
