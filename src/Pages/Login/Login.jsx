@@ -39,7 +39,7 @@ const Login = () => {
                     </div>
                     {errors.password && <span className='text-red-500'>This field is required</span>}
                     <label className="label">
-                        <p  className="label-text-alt link link-hover">Do not have an account? <Link className='text-blue-600'>SignUp</Link></p>
+                        <p  className="label-text-alt text-lg link link-hover">Do not have an account? <Link to='/signup' className='text-blue-600'>SignUp</Link></p>
                     </label>
                     </div>
                     <div className="form-control mt-6">
