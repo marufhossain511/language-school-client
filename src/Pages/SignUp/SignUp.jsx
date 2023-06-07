@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import signUpImg from '../../assets/signUpAndLogin/login.png'
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const IMAGE_HOSTING_TOKEN=import.meta.env.VITE_IMAGE_HOSTING_TOKEN
 const SignUp = () => {
-    console.log(IMAGE_HOSTING_TOKEN);
+    // console.log(IMAGE_HOSTING_TOKEN);
     const { register, handleSubmit,  formState: { errors } } = useForm();
     const image_hosting_url=`https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_TOKEN}`
+    const [err,setErr]=useState('')
+    const {createUser,updateUserProfile}=useContext(AuthContext)
 
     const onSubmit = data => {
+        
       console.log(data)
+      if(data.password !== data.confirmPassword){
+        setErr('confirm password wrong')
+        return
+     }else{
+        setErr('')
       const formData=new FormData
       formData.append('image',data.image[0])
       fetch(image_hosting_url,{
@@ -21,9 +31,28 @@ const SignUp = () => {
       .then(data=>{
           if(data.success){
               const imageUrl=data.data.display_url
-              console.log(imageUrl);
+             console.log(imageUrl);
+             createUser(data.email,data.password)
+             .then((result)=>{
+                 const loggedUser=result.user
+                 console.log(loggedUser);
+                 setErr('')
+                // updateUserProfile(data.name,data.image)
+                // .then(()=>{
+                //     setErr('')
+                // })
+                // .catch((err)=>{
+                //     setErr(err.message)
+                // })
+             })
+             .catch((err)=>{
+                console.log(err.message);
+                setErr(err.message)
+             })
            }
       })
+     }
+     
     };
     const [show,setShow]=useState(false)
     return (
@@ -57,11 +86,19 @@ const SignUp = () => {
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input {...register("password", { required: true })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
+                    <input {...register("password", { 
+                        required: true,
+                        minLength:6, 
+                        maxLength: 20,
+                        pattern: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
+                        })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
                     <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
                         <FaEye   className="text-gray-400 cursor-pointer" />
                     </div>
-                    {errors.password && <span className='text-red-500'>This field is required</span>}
+                    {errors.password?.type === 'required' && <p className='text-red-600'>password is required</p>}
+                {errors.password?.type === 'minLength' && <p className='text-red-600'> password must be 6 characters</p>}
+                {errors.password?.type === 'maxLength' && <p className='text-red-600'> password must be less than 20 characters</p>}
+                {errors.password?.type === 'pattern' && <p className='text-red-600'> password must have one uppercase, one lowercase,one number and special characters</p>}
                     </div>
                     <div  className="form-control relative">
                     <label className="label">
@@ -81,10 +118,12 @@ const SignUp = () => {
                     <label className="label">
                         <p  className="label-text-alt text-lg link link-hover">Already have a account? <Link to='/login' className='text-blue-600'>Login</Link></p>
                     </label>
+                    {err && <span className="text-red-500">{err}</span>}
                     <div className="form-control mt-6">
                         <input className="btn btn-primary" type="submit" value="Sign Up" />
                     </div>
                 </form>
+                <SocialLogin></SocialLogin>
                 </div>
             </div>
             </div>
