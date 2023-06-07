@@ -35,8 +35,10 @@ const Navbar = () => {
       {navItems}
     </ul>
   </div>
-  <div className="navbar-end">
-       <div className="w-10 rounded-full">
+
+  <div className="navbar-end ml-24 justify-normal font-mono text-xl ">
+      <NavLink to='/login' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Login</NavLink>
+       <div className="w-10 rounded-full ml-4">
           <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
         </div>
   </div>
