@@ -3,6 +3,7 @@ import loginImg from '../../assets/signUpAndLogin/login.png'
 import { useForm } from 'react-hook-form';
 import { FaEye} from "react-icons/fa";
 import { useState } from 'react';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 const Login = () => {
     const { register, handleSubmit,  formState: { errors } } = useForm();
   const onSubmit = data => {
@@ -46,6 +47,7 @@ const Login = () => {
                         <input className="btn btn-primary" type="submit" value="Login" />
                     </div>
                 </form>
+                <SocialLogin></SocialLogin>
                 </div>
             </div>
             </div>

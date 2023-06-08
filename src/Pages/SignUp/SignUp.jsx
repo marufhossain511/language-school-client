@@ -12,7 +12,7 @@ const SignUp = () => {
     const image_hosting_url=`https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_TOKEN}`
     const [err,setErr]=useState('')
     const {createUser,updateUserProfile}=useContext(AuthContext)
-
+   const [name,setName]=useState('')
     const onSubmit = data => {
         
       console.log(data)
@@ -20,6 +20,7 @@ const SignUp = () => {
         setErr('confirm password wrong')
         return
      }else{
+        setName(data.name)
         setErr('')
       const formData=new FormData
       formData.append('image',data.image[0])
@@ -28,22 +29,22 @@ const SignUp = () => {
         body:formData
       })
       .then(res=>res.json())
-      .then(data=>{
-          if(data.success){
-              const imageUrl=data.data.display_url
+      .then(imageData=>{
+          if(imageData.success){
+              const imageUrl=imageData.data.display_url
              console.log(imageUrl);
              createUser(data.email,data.password)
              .then((result)=>{
                  const loggedUser=result.user
                  console.log(loggedUser);
                  setErr('')
-                // updateUserProfile(data.name,data.image)
-                // .then(()=>{
-                //     setErr('')
-                // })
-                // .catch((err)=>{
-                //     setErr(err.message)
-                // })
+                updateUserProfile(name,imageUrl)
+                .then(()=>{
+                    setErr('')
+                })
+                .catch((err)=>{
+                    setErr(err.message)
+                })
              })
              .catch((err)=>{
                 console.log(err.message);
@@ -92,9 +93,9 @@ const SignUp = () => {
                         maxLength: 20,
                         pattern: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
                         })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
-                    <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
+                    {/* <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
                         <FaEye   className="text-gray-400 cursor-pointer" />
-                    </div>
+                    </div> */}
                     {errors.password?.type === 'required' && <p className='text-red-600'>password is required</p>}
                 {errors.password?.type === 'minLength' && <p className='text-red-600'> password must be 6 characters</p>}
                 {errors.password?.type === 'maxLength' && <p className='text-red-600'> password must be less than 20 characters</p>}
@@ -105,9 +106,9 @@ const SignUp = () => {
                         <span className="label-text">Confirm Password</span>
                     </label>
                     <input {...register("confirmPassword", { required: true })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
-                    <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
+                    {/* <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
                         <FaEye   className="text-gray-400 cursor-pointer" />
-                    </div>
+                    </div> */}
                     {errors.confirmPassword && <span className='text-red-500'>This field is required</span>}
                     </div>
                     <label className="label">

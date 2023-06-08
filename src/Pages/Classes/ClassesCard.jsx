@@ -1,6 +1,27 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ClassesCard = ({course}) => {
-    const {image,className,instructorName,price,availableSeat}=course
+    const {_id,image,className,instructorName,price,availableSeat}=course
+
+    const {user}=useContext(AuthContext)
+    const navigate =useNavigate()
+    const handleSelect=(_id)=>{
+        console.log(_id);
+       if(!user){
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'log in before selecting the course',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        return navigate('/login')
+       }
+    }
+
     return (
         <div>
         <div className="font-mono card h-[550px] w-full bg-base-100 shadow-xl">
@@ -12,7 +33,7 @@ const ClassesCard = ({course}) => {
             <p className="font-medium">Instructor Name: {instructorName}</p>
             <p className="font-medium">Price: <span className="text-red-600">${price}</span> </p>
             <p className="font-medium">Available seats: {availableSeat} </p>
-            <button className="btn bg-primary-focus text-white btn-block">Select</button>
+            <button onClick={()=>handleSelect(_id)} className="btn bg-primary-focus text-white btn-block">Select</button>
         </div>
         </div>
     </div>

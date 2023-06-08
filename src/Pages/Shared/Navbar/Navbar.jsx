@@ -51,8 +51,8 @@ const Navbar = () => {
       {
         user? <>
         <button onClick={handleLogOut}>LogOut</button> 
-        <div className="w-10 rounded-full ml-4">
-        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        <div className="w-14 rounded-full ml-4">
+        <img className='rounded-full w-20' src={user?.photoURL} />
       </div>
         </>:<>
         <NavLink to='/login' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Login</NavLink>

@@ -5,6 +5,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 const SocialLogin = () => {
 
     const {signInWithGoogle}=useContext(AuthContext)
+    
 
     const handleGoogleSignIn=()=>{
 
@@ -21,8 +22,8 @@ const SocialLogin = () => {
             <div>
             <div className='divider'></div>
             <div className='w-full text-center my-4'>
-            <button onClick={handleGoogleSignIn} className='btn btn-circle btn-outline'>
-                <FaGoogle></FaGoogle>
+            <button onClick={handleGoogleSignIn} className=' btn bg-primary text-white btn-outline'>
+                <FaGoogle></FaGoogle> Sign With Google
             </button>
             </div>
         </div>
