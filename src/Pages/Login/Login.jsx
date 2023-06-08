@@ -2,12 +2,35 @@ import { Link } from 'react-router-dom';
 import loginImg from '../../assets/signUpAndLogin/login.png'
 import { useForm } from 'react-hook-form';
 import { FaEye} from "react-icons/fa";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 const Login = () => {
-    const { register, handleSubmit,  formState: { errors } } = useForm();
+
+  const [err,setErr]=useState()  
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {logIn}=useContext(AuthContext)
   const onSubmit = data => {
     console.log(data)
+    logIn(data.email,data.password)
+    .then((result)=>{
+        setErr('')
+        const loggedUser=result.user
+        console.log(loggedUser);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'login successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          reset()
+    })
+    .catch((err)=>{
+        console.log(err.message);
+        setErr(err.message)
+    })
   };
   const [show,setShow]=useState(false)
     return (
@@ -43,6 +66,7 @@ const Login = () => {
                         <p  className="label-text-alt text-lg link link-hover">Do not have an account? <Link to='/signup' className='text-blue-600'>SignUp</Link></p>
                     </label>
                     </div>
+                    {err && <span className="text-red-500">{err}</span>}
                     <div className="form-control mt-6">
                         <input className="btn btn-primary" type="submit" value="Login" />
                     </div>

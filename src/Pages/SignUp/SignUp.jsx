@@ -14,13 +14,13 @@ const SignUp = () => {
     const {createUser,updateUserProfile}=useContext(AuthContext)
    const [name,setName]=useState('')
     const onSubmit = data => {
+        setName(data.name)
         
       console.log(data)
       if(data.password !== data.confirmPassword){
         setErr('confirm password wrong')
         return
      }else{
-        setName(data.name)
         setErr('')
       const formData=new FormData
       formData.append('image',data.image[0])
@@ -41,6 +41,8 @@ const SignUp = () => {
                 updateUserProfile(name,imageUrl)
                 .then(()=>{
                     setErr('')
+                    const savedUser={name:name,email:data.email,role:'user'}
+                    console.log(savedUser);
                 })
                 .catch((err)=>{
                     setErr(err.message)
@@ -93,9 +95,9 @@ const SignUp = () => {
                         maxLength: 20,
                         pattern: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])/
                         })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
-                    {/* <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
+                    <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
                         <FaEye   className="text-gray-400 cursor-pointer" />
-                    </div> */}
+                    </div>
                     {errors.password?.type === 'required' && <p className='text-red-600'>password is required</p>}
                 {errors.password?.type === 'minLength' && <p className='text-red-600'> password must be 6 characters</p>}
                 {errors.password?.type === 'maxLength' && <p className='text-red-600'> password must be less than 20 characters</p>}
@@ -106,9 +108,9 @@ const SignUp = () => {
                         <span className="label-text">Confirm Password</span>
                     </label>
                     <input {...register("confirmPassword", { required: true })} type={show?'text':'password'} placeholder="password" className="input input-bordered" />
-                    {/* <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
+                    <div onClick={()=>setShow(!show)} className="absolute top-12 right-3 pl-3 flex items-center pointer-events-none">
                         <FaEye   className="text-gray-400 cursor-pointer" />
-                    </div> */}
+                    </div>
                     {errors.confirmPassword && <span className='text-red-500'>This field is required</span>}
                     </div>
                     <label className="label">
