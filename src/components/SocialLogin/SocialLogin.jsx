@@ -1,17 +1,35 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
 
     const {signInWithGoogle}=useContext(AuthContext)
-    
+    const navigate=useNavigate()
 
     const handleGoogleSignIn=()=>{
 
         signInWithGoogle()
         .then((result)=>{
-            console.log(result.user);
+            const loggedUser=result.user;
+            const savedUser={name:loggedUser.displayName,email:loggedUser.email,role:'user'}
+                    console.log(savedUser);
+                    axios.post('http://localhost:5000/users',savedUser)
+                    .then(()=>{
+                        
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Login successfully',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              navigate('/')
+                       
+                    })
         })
         .catch((err)=>{
             console.log(err.message);

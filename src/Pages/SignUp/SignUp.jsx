@@ -2,25 +2,27 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import signUpImg from '../../assets/signUpAndLogin/login.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import axios from "axios";
+import Swal from "sweetalert2";
 const IMAGE_HOSTING_TOKEN=import.meta.env.VITE_IMAGE_HOSTING_TOKEN
 const SignUp = () => {
     // console.log(IMAGE_HOSTING_TOKEN);
-    const { register, handleSubmit,  formState: { errors } } = useForm();
+    const { register, handleSubmit, reset,  formState: { errors } } = useForm();
     const image_hosting_url=`https://api.imgbb.com/1/upload?key=${IMAGE_HOSTING_TOKEN}`
     const [err,setErr]=useState('')
     const {createUser,updateUserProfile}=useContext(AuthContext)
-   const [name,setName]=useState('')
+    const navigate=useNavigate()
     const onSubmit = data => {
-        setName(data.name)
         
-      console.log(data)
-      if(data.password !== data.confirmPassword){
-        setErr('confirm password wrong')
-        return
-     }else{
+        console.log(data)
+        if(data.password !== data.confirmPassword){
+            setErr('confirm password wrong')
+            return
+        }else{
+         
         setErr('')
       const formData=new FormData
       formData.append('image',data.image[0])
@@ -38,11 +40,27 @@ const SignUp = () => {
                  const loggedUser=result.user
                  console.log(loggedUser);
                  setErr('')
-                updateUserProfile(name,imageUrl)
+                 console.log(data.name);
+                updateUserProfile(data.name,imageUrl)
                 .then(()=>{
                     setErr('')
-                    const savedUser={name:name,email:data.email,role:'user'}
+                    const savedUser={name:data.name,email:data.email,role:'user'}
                     console.log(savedUser);
+                    axios.post('http://localhost:5000/users',savedUser)
+                    .then((result)=>{
+                        if(result.data.insertedId){
+                            reset()
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'user created successfully',
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                              navigate('/')
+                        }
+                    })
+                    
                 })
                 .catch((err)=>{
                     setErr(err.message)
