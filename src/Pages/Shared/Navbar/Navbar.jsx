@@ -17,7 +17,9 @@ const Navbar = () => {
     <li className='text-lg font-semibold'><NavLink to='/' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >Home</NavLink></li>
     <li className='text-lg font-semibold'><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Instructors</NavLink></li>
     <li className='text-lg font-semibold'><NavLink to='/classes' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Classes</NavLink></li>
-    <li className='text-lg font-semibold'><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
+    {
+      user && <li className='text-lg font-semibold'><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
+    }
     </>
 
     return (

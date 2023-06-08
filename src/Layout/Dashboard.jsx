@@ -1,8 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
-
+import {FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun} from "react-icons/fa";
 const Dashboard = () => {
 
-    const isInstructor=true;
+    const isInstructor=false;
+    const isAdmin=true;
 
     return (
         <div>
@@ -15,17 +16,25 @@ const Dashboard = () => {
         </div> 
         <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-            <ul className="menu p-4 pt-40 w-80 h-full bg-base-200 text-base-content">
+            <ul className="menu p-4 pt-40 w-80 h-full bg-accent-focus  text-black">
             {/* Sidebar content here */}
             {
                 isInstructor && 
                 <>
-                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/addclass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >Add a Class</NavLink></li>
-                <li className="text-lg font-mono font-bold"><NavLink to='/myclass' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >My Classes</NavLink></li>
-                <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} >Home</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/addclass' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaFolderPlus/> Add a Class</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/myclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegFolderOpen/> My Classes</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-blue-500' : '')} ><FaHome/> Home</NavLink></li>
                 
                 </>
             }
+
+            {
+                isAdmin && 
+                <>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegSun/> Manage Classes</NavLink></li>
+                </>
+            }
+
             </ul>
         
         </div>
