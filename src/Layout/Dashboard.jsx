@@ -1,9 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun} from "react-icons/fa";
+import {FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
 const Dashboard = () => {
 
-    const isInstructor=true;
-    const isAdmin=false;
+    const isInstructor=false;
+    const isAdmin=true;
 
     return (
         <div>
@@ -12,7 +12,7 @@ const Dashboard = () => {
         <div className="drawer-content flex flex-col items-center justify-center">
             {/* Page content here */}
             <Outlet></Outlet>
-            <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+            <label htmlFor="my-drawer-2" className="btn btn-accent drawer-button lg:hidden">Open SideBar</label>
         </div> 
         <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
@@ -32,6 +32,7 @@ const Dashboard = () => {
                 isAdmin && 
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegSun/> Manage Classes</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageusers' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaUsersCog/> Manage Users</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
                 </>
             }

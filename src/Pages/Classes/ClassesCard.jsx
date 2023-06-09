@@ -33,7 +33,7 @@ const ClassesCard = ({course}) => {
             <p className="font-medium">Instructor Name: {instructorName}</p>
             <p className="font-medium">Price: <span className="text-red-600">${price}</span> </p>
             <p className="font-medium">Available seats: {availableSeat} </p>
-            <button onClick={()=>handleSelect(_id)} className="btn bg-primary-focus text-white btn-block">Select</button>
+            <button onClick={()=>handleSelect(_id)} className="btn bg-accent-focus text-white btn-block">Select</button>
         </div>
         </div>
     </div>

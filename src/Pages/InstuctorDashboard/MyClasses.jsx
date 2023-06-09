@@ -63,7 +63,7 @@ const MyClasses = () => {
             <td>{classes.students}</td>
             <td>{classes.feedback?classes.feedback:'No feedback'}</td>
             <td>
-            <Link to={`/dashboard/update/${classes._id}`} disabled={classes.feedback} className="btn btn-md bg-primary hover:bg-primary-focus text-white">Update</Link>
+            <Link to={`/dashboard/update/${classes._id}`} disabled={classes.feedback} className="btn btn-md bg-accent-focus hover:bg-accent-focus text-white">Update</Link>
             </td>
           </tr>)
       }

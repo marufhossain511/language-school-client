@@ -11,6 +11,7 @@ import MyClasses from "../Pages/InstuctorDashboard/MyClasses";
 import ManageClasses from "../Pages/AdminDashboard/ManageClasses";
 import Feedback from "../Pages/AdminDashboard/Feedback";
 import UpdateClass from "../Pages/InstuctorDashboard/UpdateClass/UpdateClass";
+import ManageUser from "../Pages/AdminDashboard/ManageUser";
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
           path:'update/:id',
           element:<UpdateClass></UpdateClass>,
           loader:({params})=>fetch(`http://localhost:5000/pendingclasses/${params.id}`)
+        },
+        {
+          path:'manageusers',
+          element:<ManageUser></ManageUser>
         }
       ]
 
