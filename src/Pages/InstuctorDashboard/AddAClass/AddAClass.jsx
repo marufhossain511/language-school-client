@@ -19,7 +19,7 @@ const AddAClass = () => {
         .then((imageData)=>{
             if(imageData.success){
                 const imageUrl=imageData.data.display_url
-                const price =parseFloat(data.availableSeat)
+                const price =parseFloat(data.price)
                 const seat=parseFloat(data.availableSeat)
                 const newClass={
                     className:data.className,

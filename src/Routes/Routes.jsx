@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import AddAClass from "../Pages/InstuctorDashboard/AddAClass/AddAClass";
 import MyClasses from "../Pages/InstuctorDashboard/MyClasses";
 import ManageClasses from "../Pages/AdminDashboard/ManageClasses";
+import Feedback from "../Pages/AdminDashboard/Feedback";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
         {
           path:'manageclasses',
           element:<ManageClasses></ManageClasses>
+        },
+        {
+          path:'feedback/:id',
+          element:<Feedback></Feedback>,
+          loader:({params})=>fetch(`http://localhost:5000/pendingclasses/${params.id}`)
         }
       ]
 

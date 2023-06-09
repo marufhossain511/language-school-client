@@ -2,8 +2,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import {FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun} from "react-icons/fa";
 const Dashboard = () => {
 
-    const isInstructor=false;
-    const isAdmin=true;
+    const isInstructor=true;
+    const isAdmin=false;
 
     return (
         <div>
@@ -32,6 +32,7 @@ const Dashboard = () => {
                 isAdmin && 
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegSun/> Manage Classes</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
                 </>
             }
 

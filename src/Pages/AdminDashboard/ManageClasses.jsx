@@ -2,19 +2,76 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const ManageClasses = () => {
     const {user}=useContext(AuthContext)
-    const {data:myClasses=[]} = useQuery({ 
+    const {data:myClasses=[],refetch} = useQuery({ 
         queryKey: ['myclasses'],
-         queryFn: async ()=>{
-               const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
-               console.log(res.data); 
-               return res.data
-         }
-        })
+        queryFn: async ()=>{
+            const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
+            //    console.log(res.data); 
+            return res.data
+        }
+    })
+    
+    
+    const handleApproved=(classes)=>{
+        // console.log(classes);
+        const approveClass={
+            availableSeat:classes.availableSeat,
+            className:classes.className,
+            image:classes.image,
+            instructorEmail:classes.instructorEmail,
+            instructorName:classes.instructorName,
+                price:classes.price,
+                students:classes.students
+            }
+            console.log(approveClass);
+            Swal.fire({
+                icon: 'question',
+                title: 'Do you want to Approve?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Approve',
+                denyButtonText: `Don't Approve`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    //   Swal.fire('Saved!', '', 'success')
+                    fetch(`http://localhost:5000/pendingclasses/${classes._id}`,{
+                        method:'PATCH'
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        if(data.modifiedCount){
+                            axios.post('http://localhost:5000/approvedclasses',
+                            approveClass)
+                            .then((res)=>{
+                                if(res.data.insertedId){
+                                    refetch()
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'class approved successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            })
+                        }
+                    })
+                    
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+        }
+       
+
     return (
         <div className="w-full md:-mt-52">
+
             <h2 className="text-4xl font-medium font-mono text-center">Manage Classes</h2>
             <div className="ml-5">
              <div className="overflow-x-auto">
@@ -64,15 +121,14 @@ const ManageClasses = () => {
             <td>{classes.status}</td>
             <td>
             <div className="btn-group font-mono btn-group-vertical">
-            <button className="btn mb-2 btn-sm btn-outline btn-success">Approve</button>
-            <button className="btn mb-2 btn-sm btn-outline btn-error">Deny</button>
-            <button className="btn mb-2 btn-sm btn-outline btn-primary">Feedback</button>
+            <button onClick={()=>handleApproved(classes)} disabled={classes.status === 'approved' || classes.status === 'deny'} className="btn mb-2 btn-sm  btn-success">Approve</button>
+            <Link to={`/dashboard/feedback/${classes._id}`} disabled={classes.status === 'approved' || classes.status === 'deny'}  className="btn mb-2 btn-sm  btn-error">Deny</Link>
             </div>
             </td>
           </tr>)
       }
     </tbody>
-    
+   
   </table>
 </div>
              </div>
