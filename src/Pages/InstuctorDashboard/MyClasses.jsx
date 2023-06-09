@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const MyClasses = () => {
     const {user}=useContext(AuthContext)
@@ -9,10 +10,12 @@ const MyClasses = () => {
         queryKey: ['myclasses'],
          queryFn: async ()=>{
                const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
-               console.log(res.data); 
+              //  console.log(res.data); 
                return res.data
          }
         })
+
+
     return (
         <div className="w-full md:-mt-52">
             <h2 className="text-4xl font-medium font-mono text-center">My Classes</h2>
@@ -60,7 +63,7 @@ const MyClasses = () => {
             <td>{classes.students}</td>
             <td>{classes.feedback?classes.feedback:'No feedback'}</td>
             <td>
-            <button disabled={classes.feedback} className="btn btn-md bg-primary hover:bg-primary-focus text-white">Update</button>
+            <Link to={`/dashboard/update/${classes._id}`} disabled={classes.feedback} className="btn btn-md bg-primary hover:bg-primary-focus text-white">Update</Link>
             </td>
           </tr>)
       }
