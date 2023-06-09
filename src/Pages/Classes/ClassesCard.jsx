@@ -2,14 +2,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ClassesCard = ({course}) => {
     const {_id,image,className,instructorName,price,availableSeat}=course
-
     const {user}=useContext(AuthContext)
     const navigate =useNavigate()
     const handleSelect=(_id)=>{
-        console.log(_id);
        if(!user){
         Swal.fire({
             position: 'center',
@@ -20,6 +19,29 @@ const ClassesCard = ({course}) => {
           })
         return navigate('/login')
        }
+     const newClass={
+        image,
+        className,
+        instructorName,
+        price,
+        availableSeat,
+        classId:_id,
+        email:user?.email
+     }      
+     axios.post('http://localhost:5000/cart',newClass)
+     .then((response)=>{
+        console.log(response.data);
+        if(response.data.insertedId){
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'class add in your dashboard My Select Page',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
+     })
+
     }
 
     return (

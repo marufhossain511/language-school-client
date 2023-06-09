@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/signUpAndLogin/login.png'
 import { useForm } from 'react-hook-form';
 import { FaEye} from "react-icons/fa";
@@ -11,6 +11,7 @@ const Login = () => {
   const [err,setErr]=useState()  
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const {logIn}=useContext(AuthContext)
+  const navigate=useNavigate()
   const onSubmit = data => {
     console.log(data)
     logIn(data.email,data.password)
@@ -26,6 +27,8 @@ const Login = () => {
             timer: 1500
           })
           reset()
+          navigate('/')
+
     })
     .catch((err)=>{
         console.log(err.message);

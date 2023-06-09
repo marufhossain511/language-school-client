@@ -1,9 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
+import {FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
 const Dashboard = () => {
 
     const isInstructor=false;
-    const isAdmin=true;
+    const isAdmin=false;
+    const user=true;
 
     return (
         <div>
@@ -34,6 +35,15 @@ const Dashboard = () => {
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegSun/> Manage Classes</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageusers' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaUsersCog/> Manage Users</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
+                </>
+            }
+
+            {
+                user && 
+                <>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/selectedclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaCheck/> My Selected Class</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
+                
                 </>
             }
 
