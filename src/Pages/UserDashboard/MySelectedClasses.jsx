@@ -2,6 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
 
@@ -48,7 +49,7 @@ const MySelectedClasses = () => {
                 <h2 className="text-2xl mb-1">Total Price: ${total}</h2>
                 </div>
                 <div className="md:pl-20 mb-1">
-                  <button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button>
+                 <Link to="/dashboard/payment"><button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button></Link>
                 </div>
             </div>
             <div className="overflow-x-auto mx-8">

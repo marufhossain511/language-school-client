@@ -13,6 +13,7 @@ import Feedback from "../Pages/AdminDashboard/Feedback";
 import UpdateClass from "../Pages/InstuctorDashboard/UpdateClass/UpdateClass";
 import ManageUser from "../Pages/AdminDashboard/ManageUser";
 import MySelectedClasses from "../Pages/UserDashboard/MySelectedClasses";
+import Payment from "../Pages/UserDashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
         {
           path:'selectedclasses',
           element:<MySelectedClasses></MySelectedClasses>
+        },
+        {
+          path:'payment',
+          element:<Payment></Payment>
         }
       ]
 
