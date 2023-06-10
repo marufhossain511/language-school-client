@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-
+     
     const {signInWithGoogle}=useContext(AuthContext)
     const navigate=useNavigate()
 
@@ -15,7 +15,8 @@ const SocialLogin = () => {
         signInWithGoogle()
         .then((result)=>{
             const loggedUser=result.user;
-            const savedUser={name:loggedUser.displayName,email:loggedUser.email,role:'user'}
+            console.log(loggedUser);
+            const savedUser={name:loggedUser.displayName,email:loggedUser.email,role:'user',image:loggedUser.photoURL}
                     console.log(savedUser);
                     axios.post('http://localhost:5000/users',savedUser)
                     .then(()=>{

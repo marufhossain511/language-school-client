@@ -49,7 +49,9 @@ const MySelectedClasses = () => {
                 <h2 className="text-2xl mb-1">Total Price: ${total}</h2>
                 </div>
                 <div className="md:pl-20 mb-1">
-                 <Link to="/dashboard/payment"><button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button></Link>
+                 {
+                    total >0 && <Link to="/dashboard/payment"><button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button></Link>
+                 }
                 </div>
             </div>
             <div className="overflow-x-auto mx-8">

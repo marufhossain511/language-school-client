@@ -21,7 +21,7 @@ const CheckOut = ({cart,price}) => {
                 setClientSecret(response.data.clientSecret)
             })
         }
-    },[])
+    },[price])
 
     const handleSubmit = async (event) => {
       // Block native form submission.
@@ -85,7 +85,8 @@ const CheckOut = ({cart,price}) => {
                 quantity:cart.length,
                 classId:cart.map(item=>item.classId),
                 cartItems:cart.map(item=>item._id),              
-                className:cart.map(item=>item.className)  
+                className:cart.map(item=>item.className),
+                classImage:cart.map(item=>item.image)
                }
                axios.post('http://localhost:5000/payments',payment)
                .then(res=>{
@@ -115,11 +116,15 @@ const CheckOut = ({cart,price}) => {
         }}
       />
       <div className="text-center">
-     {
-        processing?<FaSpinner className='animate-spin h-24'/> : <button className=" my-4 btn px-6 bg-accent-focus font-bold text-white" type="submit" disabled={!stripe || processing || !clientSecret}>
-        Pay
+     
+      {
+        processing?<FaSpinner className='animate-spin text-accent-focus text-center px-6 h-24'/> :
+        <button className=" my-4 btn px-6 bg-accent-focus font-bold text-white" type="submit" disabled={!stripe || processing || !clientSecret}>
+        PAY
       </button>
-     }
+      }
+       
+     
       </div>
     </form>
          {cardError && <p className='text-red-600'>{cardError}</p>}

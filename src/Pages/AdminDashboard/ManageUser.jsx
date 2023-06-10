@@ -33,14 +33,24 @@ const ManageUser = () => {
         axios.patch(`http://localhost:5000/makeinstructoruser/${user._id}`)
         .then(result=>{
             if(result.data.modifiedCount){
-                refetch()
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: `${user.name} is an Instructor Now`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
+                const newInstructor={
+                    name:user.name,
+                    image:user?.image,
+                    email:user.email
+                    }
+                     axios.post('http://localhost:5000/instructors',newInstructor)
+                     .then(res=>{
+                        if(res.data.insertedId){
+                            refetch()
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: `${user.name} is an Instructor Now`,
+                                showConfirmButton: false,
+                                timer: 1500
+                              })
+                        }
+                     })
             }
         })
     }
@@ -49,12 +59,13 @@ const ManageUser = () => {
     return (
         <div className="w-full md:-mt-52">
            <h2 className="text-4xl font-medium font-mono text-center my-10">Manage Users</h2>
-           <div className="overflow-x-auto mx-8">
+           <div className="overflow-x-auto mx-4">
             <table className="table table-zebra">
                 {/* head */}
                 <thead>
                 <tr className="bg-base-200 text-lg text-black font-mono font-bold">
                     <th>#</th>
+                    <th>User Image</th>
                     <th>User Name</th>
                     <th>User Email</th>
                     <th>Role</th>
@@ -67,6 +78,15 @@ const ManageUser = () => {
                     key={user._id}
                     >
                     <td className="text-xl">{idx+1}</td>
+                    <td>
+                    <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                            <img src={user.image} alt="Avatar Tailwind CSS Component" />
+                        </div>
+                        </div>
+                    </div>
+                    </td>
                     <td className="text-xl">{user.name}</td>
                     <td className="text-xl">{user.email}</td>
                     <td className="text-xl">{user.role}</td>

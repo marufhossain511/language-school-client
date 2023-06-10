@@ -8,13 +8,14 @@ import '@smastrom/react-rating/style.css'
 const PopularInstructor = () => {
 
     const {data:instructors=[]}=useQuery({
-        queryKey:[''],
+        queryKey:['instructors'],
         queryFn: async ()=>{
             const res= await axios('http://localhost:5000/instructors')
             console.log(res.data);
             return res.data
         }
     })
+    const popular = instructors.filter(instructor=>instructor.category === 'popular')
 
     return (
         <div className="my-20">
@@ -29,7 +30,7 @@ const PopularInstructor = () => {
                 className="mySwiper"
             >
                 {
-                    instructors.map((instructor,idx)=><SwiperSlide
+                    popular.map((instructor,idx)=><SwiperSlide
                     key={idx}
                     >
                       <div className="font-mono card h-[500px] w-full bg-base-100 shadow-xl">

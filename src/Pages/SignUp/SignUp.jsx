@@ -34,7 +34,6 @@ const SignUp = () => {
       .then(imageData=>{
           if(imageData.success){
               const imageUrl=imageData.data.display_url
-             console.log(imageUrl);
              createUser(data.email,data.password)
              .then((result)=>{
                  const loggedUser=result.user
@@ -44,7 +43,7 @@ const SignUp = () => {
                 updateUserProfile(data.name,imageUrl)
                 .then(()=>{
                     setErr('')
-                    const savedUser={name:data.name,email:data.email,role:'user'}
+                    const savedUser={name:data.name,email:data.email,role:'user',image:imageUrl}
                     console.log(savedUser);
                     axios.post('http://localhost:5000/users',savedUser)
                     .then((result)=>{
