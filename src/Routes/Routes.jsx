@@ -14,6 +14,7 @@ import UpdateClass from "../Pages/InstuctorDashboard/UpdateClass/UpdateClass";
 import ManageUser from "../Pages/AdminDashboard/ManageUser";
 import MySelectedClasses from "../Pages/UserDashboard/MySelectedClasses";
 import Payment from "../Pages/UserDashboard/Payment/Payment";
+import MyEnrolledClasses from "../Pages/UserDashboard/MyEnrolledClasses";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
         {
           path:'payment',
           element:<Payment></Payment>
+        },
+        {
+          path:'enrolledclasses',
+          element:<MyEnrolledClasses></MyEnrolledClasses>
         }
       ]
 

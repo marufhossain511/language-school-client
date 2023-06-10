@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
+import {FaBook, FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
 const Dashboard = () => {
 
     const isInstructor=false;
@@ -41,7 +41,8 @@ const Dashboard = () => {
             {
                 user && 
                 <>
-                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/selectedclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaCheck/> My Selected Class</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/selectedclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaCheck/> My Selected Classes</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/enrolledclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaBook/> My Enrolled Classes</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
                 
                 </>

@@ -3,6 +3,7 @@ import useCart from "../../hooks/useCart";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import EmptyCover from "../../components/EmptyCover/EmptyCover";
 
 const MySelectedClasses = () => {
 
@@ -40,7 +41,13 @@ const MySelectedClasses = () => {
 
     return (
         <div className="w-full md:-mt-52">
-           <h2 className="text-4xl font-medium font-mono text-center">My Selected Classes</h2>
+          {
+            cart.length === 0 ?
+            
+            <EmptyCover title={'You Did not Select Any Class'}></EmptyCover>
+            :
+            <>
+             <h2 className="text-4xl font-medium font-mono text-center">My Selected Classes</h2>
             <div className="font-mono ml-2 md:ml-16 mt-7 pb-2 grid md:gap-20 md:grid-cols-3 w-full">
                 <div>
                     <h2 className="text-2xl mb-1">Classes: {cart.length}</h2>
@@ -102,6 +109,8 @@ const MySelectedClasses = () => {
                 </tbody>                
             </table>
             </div>
+            </>
+          }
         </div>
     );
 };

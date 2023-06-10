@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = ({cart,price}) => {
     const stripe = useStripe();
@@ -13,7 +14,7 @@ const CheckOut = ({cart,price}) => {
     const[processing,setProcessing]=useState(false)
     const [transactionId,setTransactionId]=useState('')
     const[cardError,setCardError]=useState('') 
-
+    const navigate=useNavigate() 
     useEffect(()=>{
         if(price > 0){
             axios.post('http://localhost:5000/create-payment-intent',{price})
@@ -76,6 +77,10 @@ const CheckOut = ({cart,price}) => {
           setProcessing(false)
           if(paymentIntent.status ==='succeeded'){
             setTransactionId(paymentIntent.id)
+            axios.post('http://localhost:5000/enrolledclass',cart)
+            .then(res=>{
+              console.log(res.data);
+            })
             const payment={
                 email:user?.email,
                 transactionId:paymentIntent.id,
@@ -85,13 +90,14 @@ const CheckOut = ({cart,price}) => {
                 quantity:cart.length,
                 classId:cart.map(item=>item.classId),
                 cartItems:cart.map(item=>item._id),              
-                className:cart.map(item=>item.className),
-                classImage:cart.map(item=>item.image)
+                className:cart.map(item=>item.className)
                }
                axios.post('http://localhost:5000/payments',payment)
                .then(res=>{
                 console.log(res.data);
+                navigate('/dashboard/enrolledclasses')
                })
+
           }
 
     };
@@ -118,7 +124,7 @@ const CheckOut = ({cart,price}) => {
       <div className="text-center">
      
       {
-        processing?<FaSpinner className='animate-spin text-accent-focus text-center px-6 h-24'/> :
+        processing?<FaSpinner className='animate-spin h-24'/> :
         <button className=" my-4 btn px-6 bg-accent-focus font-bold text-white" type="submit" disabled={!stripe || processing || !clientSecret}>
         PAY
       </button>

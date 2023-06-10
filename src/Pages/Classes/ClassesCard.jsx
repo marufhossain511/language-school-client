@@ -26,7 +26,8 @@ const ClassesCard = ({course}) => {
         price,
         availableSeat,
         classId:_id,
-        email:user?.email
+        email:user?.email,
+        date:new Date
      }      
      axios.post('http://localhost:5000/cart',newClass)
      .then((response)=>{
