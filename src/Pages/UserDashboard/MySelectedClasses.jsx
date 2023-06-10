@@ -9,6 +9,7 @@ const MySelectedClasses = () => {
 
     const [cart,refetch]=useCart()
     const total = cart.reduce((sum,items)=>items.price + sum,0)
+    const price= total.toFixed(2)
 
     const handleDelete=(_id)=>{
         console.log(_id);
@@ -40,7 +41,7 @@ const MySelectedClasses = () => {
     }
 
     return (
-        <div className="w-full md:-mt-52">
+        <div className="w-full">
           {
             cart.length === 0 ?
             
@@ -48,17 +49,12 @@ const MySelectedClasses = () => {
             :
             <>
              <h2 className="text-4xl font-medium font-mono text-center">My Selected Classes</h2>
-            <div className="font-mono ml-2 md:ml-16 mt-7 pb-2 grid md:gap-20 md:grid-cols-3 w-full">
+            <div className="font-mono ml-2 md:ml-16 mt-7 pb-2 grid md:gap-20 md:grid-cols-2 w-full">
                 <div>
                     <h2 className="text-2xl mb-1">Classes: {cart.length}</h2>
                 </div>
                 <div>
-                <h2 className="text-2xl mb-1">Total Price: ${total}</h2>
-                </div>
-                <div className="md:pl-20 mb-1">
-                 {
-                    total >0 && <Link to="/dashboard/payment"><button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button></Link>
-                 }
+                <h2 className="text-2xl mb-1">Total Price: ${price}</h2>
                 </div>
             </div>
             <div className="overflow-x-auto mx-8">
@@ -102,7 +98,10 @@ const MySelectedClasses = () => {
                     <td>${course.price}</td>
                     <td>{course.availableSeat}</td>
                     <td>
-                    <button onClick={()=>handleDelete(course._id)} className="btn bg-red-500 text-white hover:bg-red-800 btn-square"><FaTrashAlt className="w-4 h-4"/></button>
+                    <div className="flex gap-2">
+                    <button onClick={()=>handleDelete(course._id)} className="btn bg-red-500 text-white hover:bg-red-800 btn-square"><FaTrashAlt className="w-5 h-5"/></button>
+                    <Link to={`/dashboard/payments/${course._id}`}><button className="btn bg-accent-focus hover:bg-accent-focus text-white">PAY</button></Link>
+                    </div>
                     </td>
                 </tr>)
                }

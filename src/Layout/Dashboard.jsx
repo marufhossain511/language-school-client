@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {FaBook, FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
+import {FaBook, FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog, FaWallet} from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import axios from "axios";
@@ -63,6 +63,7 @@ const Dashboard = () => {
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/selectedclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaCheck/> My Selected Classes</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/enrolledclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaBook/> My Enrolled Classes</NavLink></li>
+                <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/paymenthistory' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaWallet/> Payment History</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaHome/> Home</NavLink></li>
                 
                 </>

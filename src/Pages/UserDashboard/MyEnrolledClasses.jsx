@@ -23,7 +23,7 @@ const MyEnrolledClasses = () => {
             enrollClasses.length === 0 ?
             <EmptyCover title={'You Did Not Enrolled Any Class'}></EmptyCover>
             :
-            <div className="w-full md:-mt-52">
+            <div className="w-full">
             <h2 className="text-4xl font-medium font-mono text-center">My Enrolled Classes</h2>
             <div className="overflow-x-auto ml-5">
   <table className="table">

@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CheckOut = ({cart,price}) => {
     const stripe = useStripe();
@@ -71,26 +72,52 @@ const CheckOut = ({cart,price}) => {
           setProcessing(false)
           if(paymentIntent.status ==='succeeded'){
             setTransactionId(paymentIntent.id)
-            axios.post('http://localhost:5000/enrolledclass',cart)
+            const enrolledCart= {
+              classId:cart.classId,
+              className:cart.className,
+              date:cart.date,
+              email:cart.email,
+              price,
+              cartItems:cart._id,
+              image:cart.image
+            }
+            axios.post('http://localhost:5000/enrolledclass',enrolledCart)
             .then(res=>{
               console.log(res.data);
             })
 
+            const classId={
+              classId:cart.classId
+            }
+
+            axios.patch('http://localhost:5000/classes',classId)
+            .then(res=>{
+              console.log(res);
+            })
+
+
             const payment={
-                email:user?.email,
-                transactionId:paymentIntent.id,
-                price, 
-                status:'service pending',
-                date:new Date(),
-                quantity:cart.length,
-                classId:cart.map(item=>item.classId),
-                cartItems:cart.map(item=>item._id),              
-                className:cart.map(item=>item.className)
+              classId:cart.classId,
+              className:cart.className,
+              date:cart.date,
+              email:cart.email,
+              price,
+              cartItems:cart._id
                }
+               console.log(payment);
                axios.post('http://localhost:5000/payments',payment)
                .then(res=>{
-                console.log(res.data);
-                navigate('/dashboard/enrolledclasses')
+                console.log(res);
+                if(res.data.insertedResult){
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Payment Successful 🔥',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate('/dashboard/paymenthistory')
+                }
                })
 
           }

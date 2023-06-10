@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const ClassesCard = ({course}) => {
-    const {_id,image,className,instructorName,price,availableSeat}=course
+    const {_id,image,className,instructorName,price,availableSeat,students}=course
     const {user}=useContext(AuthContext)
     const navigate =useNavigate()
     const handleSelect=(_id)=>{
@@ -56,6 +56,7 @@ const ClassesCard = ({course}) => {
             <p className="font-medium">Instructor Name: {instructorName}</p>
             <p className="font-medium">Price: <span className="text-red-600">${price}</span> </p>
             <p className="font-medium">Available seats: {availableSeat} </p>
+            <p className="font-medium">Enroll Student: {students} </p>
             <button onClick={()=>handleSelect(_id)} className="btn bg-accent-focus text-white btn-block">Select</button>
         </div>
         </div>

@@ -67,7 +67,7 @@ const ManageClasses = () => {
        
 
     return (
-        <div className="w-full md:-mt-52">
+        <div className="w-full">
 
             <h2 className="text-4xl font-medium font-mono text-center">Manage Classes</h2>
             <div className="ml-5">

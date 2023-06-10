@@ -18,7 +18,7 @@ const MyClasses = () => {
 
 
     return (
-        <div className="w-full md:-mt-52">
+        <div className="w-full">
             {
               myClasses.length === 0 ?
               <EmptyCover title={"You Don't Have Any Class"}></EmptyCover>
