@@ -99,10 +99,12 @@ const CheckOut = ({cart,price}) => {
             const payment={
               classId:cart.classId,
               className:cart.className,
-              date:cart.date,
+              date:new Date,
               email:cart.email,
               price,
-              cartItems:cart._id
+              cartItems:cart._id,
+              image:cart.image,
+              transactionId:paymentIntent.id,
                }
                console.log(payment);
                axios.post('http://localhost:5000/payments',payment)
