@@ -1,10 +1,20 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/Home/Logo/logo2.jpg'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 const Navbar = () => {
 
-  const {user,logOut}=useContext(AuthContext)
+  const {user,logOut,loading}=useContext(AuthContext)
+  const {data:users=''} = useQuery({
+      queryKey: ['users',user?.email],
+      enabled: !loading,
+      queryFn: async ()=>{
+          const response= await axios.get(`http://localhost:5000/users/${user?.email}`)
+          return response.data
+      },
+    })
 
   const handleLogOut=()=>{
          logOut()
@@ -18,7 +28,7 @@ const Navbar = () => {
     <li className='text-lg font-semibold'><NavLink to='/instructors' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Instructors</NavLink></li>
     <li className='text-lg font-semibold'><NavLink to='/classes' className={({ isActive }) => (isActive ? 'text-blue-500' : 'inactive')} >Classes</NavLink></li>
     {
-      user && <li className='text-lg font-semibold'><NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
+      user && <li className='text-lg font-semibold'><NavLink to={users.role === 'instructor'&&'/dashboard/addclass' || users.role=== 'admin' && '/dashboard/manageusers' || users.role === 'user' && '/dashboard/selectedclasses'} className={({ isActive }) => (isActive ? 'active' : 'inactive')} >Dashboard</NavLink></li>
     }
     </>
 
@@ -39,7 +49,7 @@ const Navbar = () => {
         <img className='h-16'  src={logo} alt="logo" />
         </div>
         <div>
-        <a className=""><span className="text-3xl font-bold font-mono text-blue-900"> Language</span> <span className="text-2xl font-mono text-blue-700">School</span></a>
+        <Link to='/' className=""><span className="text-3xl font-bold font-mono text-blue-900"> Language</span> <span className="text-2xl font-mono text-blue-700">School</span></Link>
         </div>
      </div>
   </div>

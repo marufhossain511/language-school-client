@@ -1,11 +1,23 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {FaBook, FaCheck, FaFolderPlus, FaHome, FaRegFolderOpen, FaRegSun, FaUsersCog} from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 const Dashboard = () => {
-
-    const isInstructor=false;
-    const isAdmin=false;
-    const user=true;
-
+    // const isAdmin=false;
+    // const isInstructor = false;
+    // const isUser=true
+    const {user,loading}=useContext(AuthContext)
+    const {data:users=''} = useQuery({
+        queryKey: ['users',user?.email],
+        enabled: !loading,
+        queryFn: async ()=>{
+            const response= await axios.get(`http://localhost:5000/users/${user?.email}`)
+            return response.data
+        },
+      })
+    //   console.log(users.role);
     return (
         <div>
         <div className="drawer lg:drawer-open">
@@ -20,7 +32,7 @@ const Dashboard = () => {
             <ul className="menu p-4 pt-40 w-80 h-full bg-accent-focus  text-black">
             {/* Sidebar content here */}
             {
-                isInstructor && 
+                users.role === 'instructor' && 
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/addclass' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaFolderPlus/> Add a Class</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/myclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegFolderOpen/> My Classes</NavLink></li>
@@ -30,7 +42,7 @@ const Dashboard = () => {
             }
 
             {
-                isAdmin && 
+                users.role === 'admin' && 
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaRegSun/> Manage Classes</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/manageusers' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaUsersCog/> Manage Users</NavLink></li>
@@ -39,7 +51,7 @@ const Dashboard = () => {
             }
 
             {
-                user && 
+                users.role === 'user' && 
                 <>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/selectedclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaCheck/> My Selected Classes</NavLink></li>
                 <li className="text-lg font-mono font-bold"><NavLink to='/dashboard/enrolledclasses' className={({ isActive }) => (isActive ? 'text-white' : '')} ><FaBook/> My Enrolled Classes</NavLink></li>

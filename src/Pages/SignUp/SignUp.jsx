@@ -17,7 +17,7 @@ const SignUp = () => {
     const navigate=useNavigate()
     const onSubmit = data => {
         
-        console.log(data)
+        // console.log(data)
         if(data.password !== data.confirmPassword){
             setErr('confirm password wrong')
             return
@@ -39,7 +39,7 @@ const SignUp = () => {
                  const loggedUser=result.user
                  console.log(loggedUser);
                  setErr('')
-                 console.log(data.name);
+                //  console.log(data.name);
                 updateUserProfile(data.name,imageUrl)
                 .then(()=>{
                     setErr('')
