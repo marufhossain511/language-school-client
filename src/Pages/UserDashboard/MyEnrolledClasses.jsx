@@ -3,7 +3,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { useContext } from "react";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
-
+import moment from 'moment';
 
 const MyEnrolledClasses = () => {
     const {user}=useContext(AuthContext)
@@ -63,7 +63,7 @@ const MyEnrolledClasses = () => {
             </td>
             <td>${classes.price}</td>
             <td>
-              <button className="btn btn-ghost btn-xs">details</button>
+            {moment(classes.date).format("MMM Do YY")}
             </td>
           </tr>)
       }

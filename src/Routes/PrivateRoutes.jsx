@@ -7,12 +7,14 @@ const PrivateRoutes = ({children}) => {
     if(loading){
         return  <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-14 w-14 border-t-2 border-b-2 border-gray-900"></div>
+        <h2 className="text-3xl ml-2">Loading...</h2>
       </div>
     }
     if(user){
         return children
     }
-    return <Navigate to='/login'></Navigate>
+
+   return <Navigate to='/login'></Navigate>
 };
 
 export default PrivateRoutes;

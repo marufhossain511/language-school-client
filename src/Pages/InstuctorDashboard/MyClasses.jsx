@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
+import EmptyCover from "../../components/EmptyCover/EmptyCover";
 
 const MyClasses = () => {
     const {user}=useContext(AuthContext)
@@ -18,7 +19,12 @@ const MyClasses = () => {
 
     return (
         <div className="w-full md:-mt-52">
-            <h2 className="text-4xl font-medium font-mono text-center">My Classes</h2>
+            {
+              myClasses.length === 0 ?
+              <EmptyCover title={"You Don't Have Any Class"}></EmptyCover>
+              :
+              <>
+              <h2 className="text-4xl font-medium font-mono text-center">My Classes</h2>
              <div className="ml-5">
              <div className="overflow-x-auto">
   <table className="table">
@@ -72,6 +78,8 @@ const MyClasses = () => {
   </table>
 </div>
              </div>
+              </>
+            }
         </div>
     );
 };

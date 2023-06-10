@@ -28,8 +28,16 @@ const Dashboard = () => {
             <label htmlFor="my-drawer-2" className="btn btn-accent drawer-button lg:hidden">Open SideBar</label>
         </div> 
         <div className="drawer-side">
+            
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
             <ul className="menu p-4 pt-40 w-80 h-full bg-accent-focus  text-black">
+            <div className="avatar mb-6 text-center flex flex-col">
+            <div className="w-36  mb-5 mx-auto rounded-full">
+                <img  src={users?.image} />
+            </div>
+            <h2 className="text-2xl text-mono">Name: {users.name}</h2>
+            <p className="text-xl text-mono">Role: {users.role}</p>
+            </div>
             {/* Sidebar content here */}
             {
                 users.role === 'instructor' && 

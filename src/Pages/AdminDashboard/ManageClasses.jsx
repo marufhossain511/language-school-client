@@ -1,15 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 const ManageClasses = () => {
-    const {user}=useContext(AuthContext)
     const {data:myClasses=[],refetch} = useQuery({ 
         queryKey: ['myclasses'],
         queryFn: async ()=>{
-            const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
+            const res=await axios.get(`http://localhost:5000/pendingClasses`)
             //    console.log(res.data); 
             return res.data
         }
