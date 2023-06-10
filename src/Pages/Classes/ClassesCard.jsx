@@ -47,7 +47,7 @@ const ClassesCard = ({course}) => {
 
     return (
         <div>
-        <div className="font-mono card h-[550px] w-full bg-base-100 shadow-xl">
+        <div className={`${availableSeat === 0 && 'bg-red-500'} font-mono card h-[550px] w-full bg-base-100 shadow-xl`}>
         <figure className="px-10 h-[400px] pt-10">
             <img src={image} alt="Shoes" className="rounded-xl" />
         </figure>
@@ -57,7 +57,7 @@ const ClassesCard = ({course}) => {
             <p className="font-medium">Price: <span className="text-red-600">${price}</span> </p>
             <p className="font-medium">Available seats: {availableSeat} </p>
             <p className="font-medium">Enroll Student: {students} </p>
-            <button onClick={()=>handleSelect(_id)} className="btn bg-accent-focus text-white btn-block">Select</button>
+            <button onClick={()=>handleSelect(_id)} disabled={availableSeat === 0} className="btn bg-accent-focus text-white btn-block">Select</button>
         </div>
         </div>
     </div>

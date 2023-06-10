@@ -16,13 +16,13 @@ const ManageClasses = () => {
     const handleApproved=(classes)=>{
         // console.log(classes);
         const approveClass={
-            availableSeat:classes.availableSeat,
-            className:classes.className,
-            image:classes.image,
-            instructorEmail:classes.instructorEmail,
-            instructorName:classes.instructorName,
-                price:classes.price,
-                students:classes.students
+              availableSeat:classes.availableSeat,
+              className:classes.className,
+              image:classes.image,
+              instructorEmail:classes.instructorEmail,
+              instructorName:classes.instructorName,
+              price:classes.price,
+              students:classes.students
             }
             console.log(approveClass);
             Swal.fire({

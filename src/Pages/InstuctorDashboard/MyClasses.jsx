@@ -11,7 +11,7 @@ const MyClasses = () => {
         queryKey: ['myclasses'],
          queryFn: async ()=>{
                const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
-              //  console.log(res.data); 
+               console.log(res.data); 
                return res.data
          }
         })
@@ -38,7 +38,6 @@ const MyClasses = () => {
         <th>Class Name</th>
         <th>Price</th>
         <th>Status</th>
-        <th>Enrolled Student</th>
         <th>Feedback</th>
         <th>Action</th>
       </tr>
@@ -66,7 +65,6 @@ const MyClasses = () => {
             </td>
             <td>${classes.price}</td>
             <td>{classes.status}</td>
-            <td>{classes.students}</td>
             <td>{classes.feedback?classes.feedback:'No feedback'}</td>
             <td>
             <Link to={`/dashboard/update/${classes._id}`} disabled={classes.feedback} className="btn btn-md bg-accent-focus hover:bg-accent-focus text-white">Update</Link>

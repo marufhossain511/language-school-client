@@ -1,5 +1,4 @@
 import usePayment from "../../hooks/usePayment";
-import PaymentHistoryCard from "./PaymentHistoryCard";
 
 const PaymentHistory = () => {
     const[payment]=usePayment()
