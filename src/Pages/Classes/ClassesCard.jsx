@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { Fade } from "react-awesome-reveal";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const ClassesCard = ({course}) => {
     const {_id,image,className,instructorName,price,availableSeat,students}=course
     const {user}=useContext(AuthContext)
@@ -46,9 +46,17 @@ const ClassesCard = ({course}) => {
 
     }
 
+    useEffect(() => {
+        AOS.init({
+            duration: 650,
+            // once: true
+          });
+      }, [])
+
     return (
         <div>
-       <Fade duration={2000}>
+       <div  data-aos="fade-up"
+        data-aos-duration="1000">
        <div className={`${availableSeat === 0 && 'bg-red-500'} font-mono card h-[550px] w-full bg-base-100 shadow-xl`}>
         <figure className="px-10 h-[400px] pt-10">
             <img src={image} alt="Shoes" className="rounded-xl" />
@@ -62,7 +70,7 @@ const ClassesCard = ({course}) => {
             <button onClick={()=>handleSelect(_id)} disabled={availableSeat === 0} className="btn bg-accent-focus text-white btn-block">Select</button>
         </div>
         </div>
-       </Fade>
+       </div>
     </div>
     );
 };

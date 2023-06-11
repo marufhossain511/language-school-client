@@ -7,6 +7,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const IMAGE_HOSTING_TOKEN=import.meta.env.VITE_IMAGE_HOSTING_TOKEN
 const SignUp = () => {
     // console.log(IMAGE_HOSTING_TOKEN);
@@ -77,6 +78,9 @@ const SignUp = () => {
     const [show,setShow]=useState(false)
     return (
         <div className="py-20 md:flex bg-base-200">
+            <Helmet>
+                <title>Language School || Sign Up</title>
+            </Helmet>
             <div className="md:w-1/2">
                <img src={signUpImg} alt="" />
             </div>

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
 import moment from 'moment';
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyEnrolledClasses = () => {
     const {user,loading}=useContext(AuthContext)
@@ -20,6 +21,9 @@ const MyEnrolledClasses = () => {
 
     return (
         <>
+           <Helmet>
+                <title>Language School || My Enrolled Class</title>
+            </Helmet>
         {
             enrollClasses.length === 0 ?
             <EmptyCover title={'You Did Not Enrolled Any Class'}></EmptyCover>

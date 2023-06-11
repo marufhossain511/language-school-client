@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
+import { Helmet } from "react-helmet-async";
 
 const MySelectedClasses = () => {
 
@@ -42,6 +43,9 @@ const MySelectedClasses = () => {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Language School || My Selected Class</title>
+            </Helmet>
           {
             cart.length === 0 ?
             

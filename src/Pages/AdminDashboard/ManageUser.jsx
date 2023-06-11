@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
  
@@ -60,6 +61,9 @@ const ManageUser = () => {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Language School || Manage users</title>
+            </Helmet>
            <h2 className="text-4xl font-medium font-mono text-center my-10">Manage Users</h2>
            <div className="overflow-x-auto mx-4">
             <table className="table table-zebra">

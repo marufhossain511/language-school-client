@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Cover from "../../components/Cover/Cover";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const Instructors = () => {
@@ -15,6 +16,9 @@ const Instructors = () => {
 
     return (
         <div className="py-20">
+          <Helmet>
+                <title>Language School || Instructors</title>
+            </Helmet>
             <Cover title={'All Instructors'}></Cover>
  <div className="overflow-x-auto my-4">
   <table className="table">

@@ -1,12 +1,16 @@
 import moment from "moment";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
 import usePayment from "../../hooks/usePayment";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
     const[payment]=usePayment()
     console.log(payment);
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Language School || Payment History</title>
+            </Helmet>
              
              {
                 payment.length === 0 ? 

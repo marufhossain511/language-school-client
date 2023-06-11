@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
+import { Helmet } from "react-helmet-async";
 
 const MyClasses = () => {
     const {user}=useContext(AuthContext)
@@ -19,6 +20,9 @@ const MyClasses = () => {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Language School || My Classes</title>
+            </Helmet>
             {
               myClasses.length === 0 ?
               <EmptyCover title={"You Don't Have Any Class"}></EmptyCover>

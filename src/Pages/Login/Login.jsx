@@ -6,6 +6,7 @@ import { useContext, useState } from 'react';
 import SocialLogin from '../../components/SocialLogin/SocialLogin';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
 
   const [err,setErr]=useState()  
@@ -38,6 +39,9 @@ const Login = () => {
   const [show,setShow]=useState(false)
     return (
         <div className="py-20 md:flex bg-base-200">
+            <Helmet>
+                <title>Language School || login</title>
+            </Helmet>
             <div className="md:w-1/2">
                <img src={loginImg} alt="" />
             </div>

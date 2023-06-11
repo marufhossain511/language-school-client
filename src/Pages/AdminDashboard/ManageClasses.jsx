@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const ManageClasses = () => {
     const {data:myClasses=[],refetch} = useQuery({ 
         queryKey: ['myclasses'],
@@ -68,6 +69,9 @@ const ManageClasses = () => {
 
     return (
         <div className="w-full">
+            <Helmet>
+                <title>Language School || Manage Classes</title>
+            </Helmet>
 
             <h2 className="text-4xl font-medium font-mono text-center">Manage Classes</h2>
             <div className="ml-5">

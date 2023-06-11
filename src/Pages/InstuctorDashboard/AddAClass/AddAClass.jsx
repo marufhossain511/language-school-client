@@ -3,6 +3,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const IMAGE_HOSTING_TOKEN=import.meta.env.VITE_IMAGE_HOSTING_TOKEN
 const AddAClass = () => {
     const {user}=useContext(AuthContext)
@@ -53,6 +54,9 @@ const AddAClass = () => {
 
     return (
         <div className="w-3/4 px-20 shadow-2xl h-[700px] md:ml-24 mt-10 pt-20">
+            <Helmet>
+                <title>Language School || Add A Class</title>
+            </Helmet>
             <div className=" ">
                 <h2 className="text-4xl font-mono font-bold text-center">Add a Class</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
