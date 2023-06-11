@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Feedback = () => {
 
     const loadData=useLoaderData()
     console.log(loadData);
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate=useNavigate()
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const onSubmit = data => {
       const feedback=data.feedback
       console.log(feedback);
@@ -19,7 +22,18 @@ const Feedback = () => {
       })
       .then(res=>res.json())
       .then(data=>{
-        console.log(data);
+        reset()
+        if(data.modifiedCount){
+          Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: `feedback Done`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            navigate('/dashboard/manageclasses')
+      }
+         
       })
   }
     return (
