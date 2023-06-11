@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../Providers/AuthProvider";
-import axios from "axios";
 import { useContext } from "react";
 import EmptyCover from "../../components/EmptyCover/EmptyCover";
 import moment from 'moment';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyEnrolledClasses = () => {
-    const {user}=useContext(AuthContext)
+    const {user,loading}=useContext(AuthContext)
+    const [axiosSecure]=useAxiosSecure()
     const {data:enrollClasses=[] } = useQuery({
         queryKey: ['carts',user?.email],
-        // enabled: !loading,
+        enabled: !loading,
         queryFn: async ()=>{
-            const response= await axios.get(`http://localhost:5000/enrolledclasses?email=${user?.email}`)
+            const response= await axiosSecure.get(`enrolledclasses?email=${user?.email}`)
             console.log(response.data);
             return response.data
         },

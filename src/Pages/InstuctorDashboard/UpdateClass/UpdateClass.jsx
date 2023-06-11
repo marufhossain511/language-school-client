@@ -4,15 +4,16 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const UpdateClass = () => {
     const{user}=useContext(AuthContext)
     const loadData=useLoaderData()
-    const [id,setId]=useState()
+    const [id,setId]=useState('')
     const navigate=useNavigate()
     const {className,price,
         availableSeat,_id}=loadData
     const { register, handleSubmit,  formState: { errors } } = useForm();
-
+   console.log(_id);
     useEffect(()=>{
         fetch(`http://localhost:5000/classbyname?name=${className}`)
         .then(res=>res.json())
@@ -21,14 +22,14 @@ const UpdateClass = () => {
         })
     },[className])
     console.log(id);
-
+ const [axiosSecure]=useAxiosSecure()
     const onSubmit = data => {
         const updateClass={
                price:data.price,
                availableSeat:data.availableSeat,
                }
-               console.log(updateClass);
-        axios.patch(`http://localhost:5000/classes/${id}`,updateClass)
+            //    console.log(updateClass);
+        axiosSecure.patch(`http://localhost:5000/classes/${id}`,updateClass)
         .then((res)=>{
             if(res.data.modifiedCount > 0){
                 const price=data.price
@@ -98,7 +99,7 @@ const UpdateClass = () => {
                        
                     </div>
                     </div>
-                   <input className="btn btn-block my-5 bg-accent-focus hover:bg-accent-focus text-white" type="submit" value="Update Class" />
+                   <input  className="btn btn-block my-5 bg-accent-focus hover:bg-accent-focus text-white"  type="submit" value="Update Class" />
                 </form>
             </div>
         </div>

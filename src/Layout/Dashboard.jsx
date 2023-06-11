@@ -5,9 +5,6 @@ import { AuthContext } from "../Providers/AuthProvider";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 const Dashboard = () => {
-    // const isAdmin=false;
-    // const isInstructor = false;
-    // const isUser=true
     const {user,loading}=useContext(AuthContext)
     const {data:users=''} = useQuery({
         queryKey: ['users',user?.email],

@@ -1,20 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUser = () => {
  
+    const[axiosSecure]=useAxiosSecure()
     const {data:users=[],refetch} = useQuery({ 
         queryKey: ['users'],
         queryFn: async ()=>{
-            const res=await axios.get('http://localhost:5000/users')
+            const res=await axiosSecure.get('/users')
             //    console.log(res.data); 
             return res.data
         }
     })
 
     const handleAdmin=(user)=>{
-        axios.patch(`http://localhost:5000/makeadminuser/${user._id}`)
+        axiosSecure.patch(`/makeadminuser/${user._id}`)
         .then(result=>{
             if(result.data.modifiedCount){
                 refetch()
@@ -30,7 +32,7 @@ const ManageUser = () => {
     }
 
     const handleInstructor=(user)=>{
-        axios.patch(`http://localhost:5000/makeinstructoruser/${user._id}`)
+        axiosSecure.patch(`/makeinstructoruser/${user._id}`)
         .then(result=>{
             if(result.data.modifiedCount){
                 const newInstructor={
