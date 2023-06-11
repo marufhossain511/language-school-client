@@ -10,7 +10,7 @@ const PopularInstructor = () => {
     const {data:instructors=[]}=useQuery({
         queryKey:['instructors'],
         queryFn: async ()=>{
-            const res= await axios('http://localhost:5000/instructors')
+            const res= await axios('https://summer-camp-school-server-hazel.vercel.app/instructors')
             // console.log(res.data);
             return res.data
         }

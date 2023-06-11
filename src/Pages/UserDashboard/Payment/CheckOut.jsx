@@ -18,7 +18,7 @@ const CheckOut = ({cart,price}) => {
     const navigate=useNavigate() 
     useEffect(()=>{
         if(price > 0){
-            axios.post('http://localhost:5000/create-payment-intent',{price})
+            axios.post('https://summer-camp-school-server-hazel.vercel.app/create-payment-intent',{price})
             .then(response=>{
                 setClientSecret(response.data.clientSecret)
             })
@@ -81,7 +81,7 @@ const CheckOut = ({cart,price}) => {
               cartItems:cart._id,
               image:cart.image
             }
-            axios.post('http://localhost:5000/enrolledclass',enrolledCart)
+            axios.post('https://summer-camp-school-server-hazel.vercel.app/enrolledclass',enrolledCart)
             .then(res=>{
               console.log(res.data);
             })
@@ -90,7 +90,7 @@ const CheckOut = ({cart,price}) => {
               classId:cart.classId
             }
 
-            axios.patch('http://localhost:5000/classes',classId)
+            axios.patch('https://summer-camp-school-server-hazel.vercel.app/classes',classId)
             .then(res=>{
               console.log(res);
             })
@@ -107,7 +107,7 @@ const CheckOut = ({cart,price}) => {
               transactionId:paymentIntent.id,
                }
                console.log(payment);
-               axios.post('http://localhost:5000/payments',payment)
+               axios.post('https://summer-camp-school-server-hazel.vercel.app/payments',payment)
                .then(res=>{
                 console.log(res);
                 if(res.data.insertedResult){

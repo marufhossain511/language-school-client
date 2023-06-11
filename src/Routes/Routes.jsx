@@ -68,12 +68,12 @@ const router = createBrowserRouter([
         {
           path:'feedback/:id',
           element:<Feedback></Feedback>,
-          loader:({params})=>fetch(`http://localhost:5000/pendingclasses/${params.id}`)
+          loader:({params})=>fetch(`https://summer-camp-school-server-hazel.vercel.app/pendingclasses/${params.id}`)
         },
         {
           path:'update/:id',
           element:<UpdateClass></UpdateClass>,
-          loader:({params})=>fetch(`http://localhost:5000/pendingclasses/${params.id}`)
+          loader:({params})=>fetch(`https://summer-camp-school-server-hazel.vercel.app/pendingclasses/${params.id}`)
         },
         {
           path:'manageusers',
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
         {
           path:'payments/:id',
           element:<Payment></Payment>,
-          loader:({params})=>fetch(`http://localhost:5000/payment/${params.id}`)
+          loader:({params})=>fetch(`https://summer-camp-school-server-hazel.vercel.app/payment/${params.id}`)
         },
         {
           path:'enrolledclasses',

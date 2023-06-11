@@ -33,7 +33,7 @@ const AddAClass = () => {
                     status:'pending'
                 }
                 console.log(newClass);
-                axios.post('http://localhost:5000/pendingclasses',newClass)
+                axios.post('https://summer-camp-school-server-hazel.vercel.app/pendingclasses',newClass)
                 .then((res)=>{
                     console.log(res.data);
                     if(res.data.insertedId){

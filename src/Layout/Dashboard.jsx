@@ -10,7 +10,7 @@ const Dashboard = () => {
         queryKey: ['users',user?.email],
         enabled: !loading,
         queryFn: async ()=>{
-            const response= await axios.get(`http://localhost:5000/users/${user?.email}`)
+            const response= await axios.get(`https://summer-camp-school-server-hazel.vercel.app/users/${user?.email}`)
             return response.data
         },
       })

@@ -18,7 +18,7 @@ const SocialLogin = () => {
             console.log(loggedUser);
             const savedUser={name:loggedUser.displayName,email:loggedUser.email,role:'user',image:loggedUser.photoURL}
                     console.log(savedUser);
-                    axios.post('http://localhost:5000/users',savedUser)
+                    axios.post('https://summer-camp-school-server-hazel.vercel.app/users',savedUser)
                     .then(()=>{
                         
                             Swal.fire({

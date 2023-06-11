@@ -11,7 +11,7 @@ const MyClasses = () => {
     const {data:myClasses=[]} = useQuery({ 
         queryKey: ['myclasses'],
          queryFn: async ()=>{
-               const res=await axios.get(`http://localhost:5000/myclasses/${user?.email}`)
+               const res=await axios.get(`https://summer-camp-school-server-hazel.vercel.app/myclasses/${user?.email}`)
                console.log(res.data); 
                return res.data
          }

@@ -13,7 +13,7 @@ const Feedback = () => {
   const onSubmit = data => {
       const feedback=data.feedback
       console.log(feedback);
-      fetch(`http://localhost:5000/denyclasses/${loadData._id}`,{
+      fetch(`https://summer-camp-school-server-hazel.vercel.app/denyclasses/${loadData._id}`,{
         method:'PUT',
         headers:{
             'content-type':'application/json'

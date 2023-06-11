@@ -46,7 +46,7 @@ const SignUp = () => {
                     setErr('')
                     const savedUser={name:data.name,email:data.email,role:'user',image:imageUrl}
                     console.log(savedUser);
-                    axios.post('http://localhost:5000/users',savedUser)
+                    axios.post('https://summer-camp-school-server-hazel.vercel.app/users',savedUser)
                     .then((result)=>{
                         if(result.data.insertedId){
                             reset()

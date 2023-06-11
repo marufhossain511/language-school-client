@@ -24,7 +24,7 @@ const MySelectedClasses = () => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/carts/${_id}`)
+                axios.delete(`https://summer-camp-school-server-hazel.vercel.app/carts/${_id}`)
                 .then(response=>{
                     // console.log(response);
                     if(response.data.deletedCount > 0){

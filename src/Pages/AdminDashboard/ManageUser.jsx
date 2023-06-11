@@ -41,7 +41,7 @@ const ManageUser = () => {
                     image:user?.image,
                     email:user.email
                     }
-                     axios.post('http://localhost:5000/instructors',newInstructor)
+                     axios.post('https://summer-camp-school-server-hazel.vercel.app/instructors',newInstructor)
                      .then(res=>{
                         if(res.data.insertedId){
                             refetch()

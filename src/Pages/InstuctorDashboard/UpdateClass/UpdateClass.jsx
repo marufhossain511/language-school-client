@@ -15,7 +15,7 @@ const UpdateClass = () => {
     const { register, handleSubmit,  formState: { errors } } = useForm();
    console.log(_id);
     useEffect(()=>{
-        fetch(`http://localhost:5000/classbyname?name=${className}`)
+        fetch(`https://summer-camp-school-server-hazel.vercel.app/classbyname?name=${className}`)
         .then(res=>res.json())
         .then(data=>{
             setId(data._id);
@@ -29,11 +29,11 @@ const UpdateClass = () => {
                availableSeat:data.availableSeat,
                }
             //    console.log(updateClass);
-        axiosSecure.patch(`http://localhost:5000/classes/${id}`,updateClass)
+        axiosSecure.patch(`https://summer-camp-school-server-hazel.vercel.app/classes/${id}`,updateClass)
         .then((res)=>{
             if(res.data.modifiedCount > 0){
                 const price=data.price
-                axios.patch(`http://localhost:5000/instructorClass/${_id}`,{price})
+                axios.patch(`https://summer-camp-school-server-hazel.vercel.app/instructorClass/${_id}`,{price})
                 .then((response)=>{
                     if(response.data.modifiedCount > 0){
 

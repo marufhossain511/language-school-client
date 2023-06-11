@@ -7,7 +7,7 @@ const ManageClasses = () => {
     const {data:myClasses=[],refetch} = useQuery({ 
         queryKey: ['myclasses'],
         queryFn: async ()=>{
-            const res=await axios.get(`http://localhost:5000/pendingClasses`)
+            const res=await axios.get(`https://summer-camp-school-server-hazel.vercel.app/pendingClasses`)
             //    console.log(res.data); 
             return res.data
         }
@@ -37,13 +37,13 @@ const ManageClasses = () => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     //   Swal.fire('Saved!', '', 'success')
-                    fetch(`http://localhost:5000/pendingclasses/${classes._id}`,{
+                    fetch(`https://summer-camp-school-server-hazel.vercel.app/pendingclasses/${classes._id}`,{
                         method:'PATCH'
                     })
                     .then(res=>res.json())
                     .then(data=>{
                         if(data.modifiedCount){
-                            axios.post('http://localhost:5000/approvedclasses',
+                            axios.post('https://summer-camp-school-server-hazel.vercel.app/approvedclasses',
                             approveClass)
                             .then((res)=>{
                                 if(res.data.insertedId){

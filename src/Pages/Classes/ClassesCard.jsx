@@ -32,7 +32,7 @@ const ClassesCard = ({course}) => {
         email:user?.email,
         date:new Date
      }      
-     axios.post('http://localhost:5000/cart',newClass)
+     axios.post('https://summer-camp-school-server-hazel.vercel.app/cart',newClass)
      .then((response)=>{
         console.log(response.data);
         if(response.data.insertedId){
