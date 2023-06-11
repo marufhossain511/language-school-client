@@ -5,9 +5,11 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useUsersRole from "../../hooks/useUsersRole";
 const ClassesCard = ({course}) => {
     const {_id,image,className,instructorName,price,availableSeat,students}=course
     const {user}=useContext(AuthContext)
+    const[users]=useUsersRole()
     const navigate =useNavigate()
     const handleSelect=(_id)=>{
        if(!user){
@@ -67,7 +69,7 @@ const ClassesCard = ({course}) => {
             <p className="font-medium">Price: <span className="text-red-600">${price}</span> </p>
             <p className="font-medium">Available seats: {availableSeat} </p>
             <p className="font-medium">Enroll Student: {students} </p>
-            <button onClick={()=>handleSelect(_id)} disabled={availableSeat === 0} className="btn bg-accent-focus text-white btn-block">Select</button>
+            <button onClick={()=>handleSelect(_id)} disabled={availableSeat === 0 || users.role == "admin" ||users.role == "instructor"} className="btn bg-accent-focus text-white btn-block">Select</button>
         </div>
         </div>
        </div>

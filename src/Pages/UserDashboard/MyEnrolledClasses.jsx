@@ -68,7 +68,7 @@ const MyEnrolledClasses = () => {
             </td>
             <td>${classes.price}</td>
             <td>
-            {moment(classes.date).format("MMM Do YY")}
+            {moment(classes.date).format("LLL")}
             </td>
           </tr>)
       }
