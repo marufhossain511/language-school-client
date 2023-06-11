@@ -9,4 +9,4 @@
 ### Client Site:
 * React Router, Vite, tailwind,daisyUI,React Icons, React From Hook, Sweet Alert2, React-awesome-revel animation, AOS animation, React slider,React Helmet , Stripe JS, tanstack/react-query,axios,firebase, moment JS, React Parallax,React Swiper etc.
 ### Server Site:
-*cors,dotenv,express,jsonwebtoken,mongodb,react,stripe
+* cors,dotenv,express,jsonwebtoken,mongodb,react,stripe

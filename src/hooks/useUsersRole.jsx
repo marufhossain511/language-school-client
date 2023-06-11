@@ -7,7 +7,7 @@ const useUsersRole = () => {
 
     const {user,loading}=useContext(AuthContext)
 
-    const {data:users=''} = useQuery({
+    const {data:users='',loading:isUserLoading} = useQuery({
         queryKey: ['users',user?.email],
         enabled: !loading,
         queryFn: async ()=>{
@@ -15,7 +15,7 @@ const useUsersRole = () => {
             return response.data
         },
       })
-      return [users]
+      return [users,isUserLoading]
 };
 
 export default useUsersRole;

@@ -18,6 +18,8 @@ import MyEnrolledClasses from "../Pages/UserDashboard/MyEnrolledClasses";
 import PrivateRoutes from "./PrivateRoutes";
 import PaymentHistory from "../Pages/UserDashboard/PaymentHistory";
 import ErrorPage from "../Pages/ErroPage/ErrorPage";
+import AdminRoutes from "./AdminRoutes";
+import InstructorRoutes from "./InstructorRoutes";
 
 const router = createBrowserRouter([
     {
@@ -53,15 +55,15 @@ const router = createBrowserRouter([
       children:[
         {
           path:'addclass',
-          element:<AddAClass></AddAClass>
+          element:<InstructorRoutes><AddAClass></AddAClass></InstructorRoutes>
         },
         {
           path:'myclasses',
-          element:<MyClasses></MyClasses>
+          element:<InstructorRoutes><MyClasses></MyClasses></InstructorRoutes>
         },
         {
           path:'manageclasses',
-          element:<ManageClasses></ManageClasses>
+          element:<AdminRoutes><ManageClasses></ManageClasses></AdminRoutes>
         },
         {
           path:'feedback/:id',
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
         },
         {
           path:'manageusers',
-          element:<ManageUser></ManageUser>
+          element:<AdminRoutes><ManageUser></ManageUser></AdminRoutes>
         },
         {
           path:'selectedclasses',
