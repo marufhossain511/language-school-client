@@ -30,7 +30,7 @@ const MyClasses = () => {
   <table className="table">
     {/* head */}
     <thead>
-      <tr className="text-sm text-black font-mono font-bold">
+      <tr className="text-sm  font-mono font-bold">
         <th>
           #
         </th>

@@ -13,6 +13,7 @@ const PopularCard = ({course}) => {
                 <h2 className="card-title">{course.className}</h2>
                 <p className="font-medium">Instructor Name: {course.instructorName}</p>
                 <p className="font-medium">Price: <span className="text-red-600">${course.price}</span> </p>
+                <p className="font-medium">Enroll Student: {course.students} </p>
             </div>
             </div>
             </Fade>

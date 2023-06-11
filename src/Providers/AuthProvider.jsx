@@ -10,29 +10,34 @@ const googleProvider=new GoogleAuthProvider()
 const AuthProvider = ({children}) => {
 
     const [loading,setLoading]=useState(true)
-    const [user,setUser]=useState()
+    const [user,setUser]=useState(null)
 
+    // register
     const createUser=(email,password)=>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
+    // social Login
     const signInWithGoogle=()=>{
         setLoading(true)
         return signInWithPopup(auth,googleProvider)
     }
 
+    // login
     const logIn=(email,password)=>{
         setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
+    // logout
     const logOut =()=>{
         setLoading(true)
         return signOut(auth)
     }
     
 
+    // update user 
     const updateUserProfile=(name,photo)=>{
         return updateProfile(auth.currentUser, {
             displayName:name, photoURL:photo
